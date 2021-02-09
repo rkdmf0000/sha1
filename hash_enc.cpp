@@ -56,11 +56,9 @@ void hash_enc::flush(void *resultHashArray) {
         this->messageBlock(start_point);
     };
     HASH_ENC_UINT32 uint32_size = sizeof(HASH_ENC_UINT32);
-    memcpy(&resultHashArray + (uint32_size * 0), this->ctx.hash + (uint32_size * 0), uint32_size);
-    memcpy(&resultHashArray + (uint32_size * 1), this->ctx.hash + (uint32_size * 1), uint32_size);
-    memcpy(&resultHashArray + (uint32_size * 2), this->ctx.hash + (uint32_size * 2), uint32_size);
-    memcpy(&resultHashArray + (uint32_size * 3), this->ctx.hash + (uint32_size * 3), uint32_size);
-    memcpy(&resultHashArray + (uint32_size * 4), this->ctx.hash + (uint32_size * 4), uint32_size);
+    HASH_ENC_SIZE index(0);
+    for (index=0;index<hash_enc::MAXIMUM_HASH_SIZE;++index)
+        memcpy(&resultHashArray + (uint32_size * index), this->ctx.hash + (uint32_size * index), uint32_size);
 };
 
 void hash_enc::flush() {
@@ -75,11 +73,9 @@ void hash_enc::flush() {
 
 HASH_ENC_STD_STRING hash_enc::getResult() {
     HASH_ENC_STD_STRING sums;
-    sums += n2hexstr<unsigned int>(this->ctx.hash[0]);
-    sums += n2hexstr<unsigned int>(this->ctx.hash[1]);
-    sums += n2hexstr<unsigned int>(this->ctx.hash[2]);
-    sums += n2hexstr<unsigned int>(this->ctx.hash[3]);
-    sums += n2hexstr<unsigned int>(this->ctx.hash[4]);
+    HASH_ENC_SIZE index(0);
+    for (index=0;index<hash_enc::MAXIMUM_HASH_SIZE;++index)
+        sums += n2hexstr<unsigned int>(this->ctx.hash[index]);
     return std::move(sums);
 };
 

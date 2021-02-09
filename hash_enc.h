@@ -16,7 +16,9 @@
 #define __MAXIMUM_HASH_SIZE 5
 #endif
 
+#include <stdio.h>
 #include <iostream>
+#include <stdlib.h>
 
 typedef std::string HASH_ENC_STD_STRING;
 typedef unsigned char HASH_ENC_UCHAR;
