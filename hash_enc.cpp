@@ -83,7 +83,6 @@ HASH_ENC_STD_STRING hash_enc::getResult() {
     return std::move(sums);
 };
 
-
 void hash_enc::messageBlock(const HASH_ENC_UINT32 limited) {
     HASH_ENC_UINT32 loopIndex(0);
     HASH_ENC_UINT32 _a = this->ctx.hash[0];
