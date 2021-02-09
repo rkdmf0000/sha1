@@ -80,7 +80,7 @@ HASH_ENC_STD_STRING hash_enc::getResult() {
     sums += n2hexstr<unsigned int>(this->ctx.hash[2]);
     sums += n2hexstr<unsigned int>(this->ctx.hash[3]);
     sums += n2hexstr<unsigned int>(this->ctx.hash[4]);
-    return sums;
+    return std::move(sums);
 };
 
 
