@@ -213,6 +213,7 @@ void hash_enc::printBufferText(char *text) {
     //std::cout << text << '\r' << '\n';
 };
 
+
 void hash_enc::print_hash() {
     std::cout << n2hexstr<unsigned int>(this->ctx.hash[0])
               << n2hexstr<unsigned int>(this->ctx.hash[1])

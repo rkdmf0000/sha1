@@ -9,7 +9,6 @@ int main() {
     char test4[13] = "갱냄스떨";
     //std::string test4 = "hello world";
 
-
     test_instance.init();
     test_instance.update(test4, sizeof(test4));
     //test_instance.flush();
