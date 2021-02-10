@@ -5,7 +5,7 @@ int main(int argc, char* argv[]) {
     hash_enc _instance;
     _instance.init();
     unsigned int index(0);
-    for (index=0;index<argc;++index) {
+    for (index=1;index<argc;++index) {
         unsigned int size = std::strlen(argv[index]);
         _instance.update(argv[index], size);
     };

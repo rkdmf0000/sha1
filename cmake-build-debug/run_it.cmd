@@ -42,7 +42,6 @@ echo. 戌式式式式式式式式式式式式式式式式式式式式式式式式戎
 echo.
 
 :testform
-setlocal
 set /p str=Please put any text : 
 hash_enc1.exe %str%
 echo. [ Converted! ]
