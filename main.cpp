@@ -1,20 +1,9 @@
-
 #include "hash_enc.h"
-
-int main() {
-    hash_enc test_instance;
-    char test1[10] = "123456789";
-    char test2[400] = "123456789";
-    char test3[5] = "1269";
-    char test4[13] = "갱냄스딸";
-    char test5[500] = "1234567890447788345678901234567890123456789012345678901234567890123456789012345678901234567890123456789123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
-    //std::string test4 = "hello world";
-
-    test_instance.init();
-    test_instance.update(test5, sizeof(test5));
-    //test_instance.flush();
-    void *results = nullptr;
-    test_instance.flush(results);
-    std::cout << test_instance.getResult() << '\n';
+int main(int argc, char* argv[]) {
+    hash_enc _instance;
+    _instance.init();
+    _instance.update(argv, sizeof(argc));
+    _instance.flush();
+    std::cout << _instance.getResult();
     return 0;
 };
