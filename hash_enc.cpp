@@ -4,7 +4,8 @@
 
 
 #include "hash_enc.h"
-
+#include <stdlib.h>
+#include <stdio.h>
 
 HASH_ENC_UINT32 hash_enc::MAXIMUM_MESSAGE_BLOCK_SIZE = __MAXIMUM_MESSAGE_BLOCK_SIZE;
 HASH_ENC_UINT32 hash_enc::MAXIMUM_HASH_SIZE = __MAXIMUM_HASH_SIZE;
