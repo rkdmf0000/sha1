@@ -33,7 +33,7 @@ void hash_enc::update(void *inputPtr, HASH_ENC_SIZE cdSize) {
     const HASH_ENC_MESSAGE_BLOCK *block = static_cast<HASH_ENC_MESSAGE_BLOCK *>(inputPtr);
     while (cdSize) {
         HASH_ENC_UINT32 biteSize = HASH_ENC_MATH_MIN(hash_enc::MAXIMUM_MESSAGE_BLOCK_SIZE - eaten, cdSize);
-        HASH_ENC_UINT32 limited = ((const HASH_ENC_UINT32) block + this->ctx.messageBlockBufferSize + eaten & 0xfffffffff);
+        HASH_ENC_UINT32 limited = (this->ctx.messageBlockBufferSize + eaten & 0xfffffffff);
         this->printBufferText((char *) "- - - memory copied");
         HASH_ENC_FN_MEMCPY((HASH_ENC_UCHAR *) this->ctx.messageBlock, block + this->ctx.messageBlockBufferSize, biteSize);
         eaten += biteSize;
