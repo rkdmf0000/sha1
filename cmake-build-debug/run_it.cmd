@@ -27,9 +27,10 @@ echo.
 :testform
 setlocal
 
-set /p str=아무 문자열이나 입력하세요:
+set /p str=아무 문자열이나 입력하세요 :
 hash_enc1.exe %str%
 echo.
+pause
 cls
 goto :testform
 
