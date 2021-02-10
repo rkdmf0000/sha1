@@ -30,7 +30,7 @@ void hash_enc::init() {
 
 void hash_enc::update(void *inputPtr, HASH_ENC_SIZE cdSize) {
     HASH_ENC_UINT32 eaten(0);
-    const HASH_ENC_MESSAGE_BLOCK *block = static_cast<HASH_ENC_MESSAGE_BLOCK *>(inputPtr);
+    HASH_ENC_MESSAGE_BLOCK *block = static_cast<HASH_ENC_MESSAGE_BLOCK *>(inputPtr);
     while (cdSize) {
         HASH_ENC_UINT32 biteSize = HASH_ENC_MATH_MIN(hash_enc::MAXIMUM_MESSAGE_BLOCK_SIZE - eaten, cdSize);
         HASH_ENC_UINT32 limited = ((HASH_ENC_UINT32) block + this->ctx.messageBlockBufferSize + eaten & 0xfffffffff);
