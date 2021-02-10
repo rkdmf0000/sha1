@@ -9,16 +9,25 @@
 #ifndef HASH_ENC1_HASH_ENC_H
 #define HASH_ENC1_HASH_ENC_H
 
-//#pragma message ("- - - HASH_ENC DEFINING CONFIG\0")
 #ifndef HASH_ENC1_HASH_ENC_H_CONFIG
 #define HASH_ENC1_HASH_ENC_H_CONFIG
+#define HASH_ENC_CONFIG_STR_OTHER 0x01
+#define HASH_ENC_CONFIG_STR_WINDOW 0x02
+#define HASH_ENC_CONFIG_STR_LINUX 0x03
 #define __MAXIMUM_MESSAGE_BLOCK_SIZE 64
 #define __MAXIMUM_HASH_SIZE 5
 #endif
 
-#include <stdio.h>
+#if defined(_WIN32)
+#define HASH_ENC_OS HASH_ENC_CONFIG_STR_WINDOW
+#elif defined(__linux__)
+#define HASH_ENC_OS HASH_ENC_CONFIG_STR_LINUX
+#else
+#define HASH_ENC_OS HASH_ENC_CONFIG_STR_OTHER
+#endif
+
 #include <iostream>
-#include <stdlib.h>
+
 
 typedef std::string HASH_ENC_STD_STRING;
 typedef unsigned char HASH_ENC_UCHAR;
@@ -35,6 +44,17 @@ typedef HASH_ENC_UINT32 HASH_ENC_HASH_BLOCK;
 
 #ifndef HASH_ENC1_HASH_ENC_H_MACRO
 #define HASH_ENC1_HASH_ENC_H_MACRO
+
+
+#if HASH_ENC_OS == HASH_ENC_CONFIG_STR_LINUX
+#include <stdlib.h>
+#define HASH_ENC_FN_MEMCPY std::memcpy
+#elif HASH_ENC_OS == HASH_ENC_CONFIG_STR_WINDOW
+#define HASH_ENC_FN_MEMCPY memcpy
+#else
+#define HASH_ENC_FN_MEMCPY memcpy
+#endif
+
 #define HASH_ENC_MATH_MIN(na, nb) (na < nb ? na : nb)
 #define HASH_ENC_MATH_MAX(na, nb) (na < nb ? nb: na)
 #define HASH_ENC_ROL(x, n) (((x) << (n)) | ((HASH_ENC_UINT32) (x) >> (32 - (n))))

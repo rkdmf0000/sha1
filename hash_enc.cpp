@@ -2,6 +2,7 @@
 // Created by my_fl on 2021-02-04.
 //
 
+
 #include "hash_enc.h"
 
 
@@ -36,7 +37,7 @@ void hash_enc::update(void *inputPtr, HASH_ENC_SIZE cdSize) {
         HASH_ENC_UINT32 biteSize = HASH_ENC_MATH_MIN(hash_enc::MAXIMUM_MESSAGE_BLOCK_SIZE - eaten, cdSize);
         HASH_ENC_UINT32 limited = ((HASH_ENC_UINT32) block + this->ctx.messageBlockBufferSize + eaten & 0xfffffffff);
         this->printBufferText((char *) "- - - memory copied");
-        memcpy((HASH_ENC_UCHAR *) this->ctx.messageBlock, block + this->ctx.messageBlockBufferSize, biteSize);
+        HASH_ENC_FN_MEMCPY((HASH_ENC_UCHAR *) this->ctx.messageBlock, block + this->ctx.messageBlockBufferSize, biteSize);
         eaten += biteSize;
         this->ctx.messageBlockBufferSize += biteSize;
         cdSize -= biteSize;
@@ -52,13 +53,13 @@ void hash_enc::flush(void *resultHashArray) {
     if (left_byte != 0) {
         HASH_ENC_SIZE start_point = this->ctx.messageBlockBufferSize - left_byte;
         HASH_ENC_SIZE require_left = hash_enc::MAXIMUM_MESSAGE_BLOCK_SIZE - left_byte;
-        memcpy(this->ctx.messageBlock + left_byte, hash_enc::REFERENCE_PAD, require_left);
+        HASH_ENC_FN_MEMCPY(this->ctx.messageBlock + left_byte, hash_enc::REFERENCE_PAD, require_left);
         this->messageBlock(start_point);
     };
     HASH_ENC_UINT32 uint32_size = sizeof(HASH_ENC_UINT32);
     HASH_ENC_SIZE index(0);
     for (index=0;index<hash_enc::MAXIMUM_HASH_SIZE;++index)
-        memcpy(&resultHashArray + (uint32_size * index), this->ctx.hash + (uint32_size * index), uint32_size);
+        HASH_ENC_FN_MEMCPY(&resultHashArray + (uint32_size * index), this->ctx.hash + (uint32_size * index), uint32_size);
 };
 
 void hash_enc::flush() {
@@ -66,7 +67,7 @@ void hash_enc::flush() {
     if (left_byte != 0) {
         HASH_ENC_SIZE start_point = this->ctx.messageBlockBufferSize - left_byte;
         HASH_ENC_SIZE require_left = hash_enc::MAXIMUM_MESSAGE_BLOCK_SIZE - left_byte;
-        memcpy(this->ctx.messageBlock + left_byte, hash_enc::REFERENCE_PAD, require_left);
+        HASH_ENC_FN_MEMCPY(this->ctx.messageBlock + left_byte, hash_enc::REFERENCE_PAD, require_left);
         this->messageBlock(start_point);
     };
 };
@@ -89,7 +90,7 @@ void hash_enc::messageBlock(const HASH_ENC_UINT32 limited) {
     HASH_ENC_UCHAR _box[hash_enc::MAXIMUM_MESSAGE_BLOCK_SIZE];
     for (loopIndex = 0; loopIndex < hash_enc::MAXIMUM_MESSAGE_BLOCK_SIZE; ++loopIndex)
         _box[loopIndex] = 0;
-    memcpy(_box, this->ctx.messageBlock, hash_enc::MAXIMUM_MESSAGE_BLOCK_SIZE);
+    HASH_ENC_FN_MEMCPY(_box, this->ctx.messageBlock, hash_enc::MAXIMUM_MESSAGE_BLOCK_SIZE);
     for (loopIndex = 0; loopIndex < 16; ++loopIndex)
         _box[loopIndex & 0x0f] = _lrotl(_box[loopIndex + 13 & 0x0f]
                                         ^ _box[loopIndex + 8 & 0x0f]
