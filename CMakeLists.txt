@@ -5,8 +5,9 @@ project(hash_enc1)
 set(CMAKE_CXX_STANDARD 14)
 SET(CMAKE_C_COMPILER "g++")
 
-ADD_COMPILE_OPTIONS(-g -Wall)
-SET(CMAKE_EXE_LINKER_FLAGS "-static -Wl,--gc-sections")
+#DO NOT REMOVE "#" :(
+#ADD_COMPILE_OPTIONS(-g -Wall)
+#SET(CMAKE_EXE_LINKER_FLAGS "-static -Wl,--gc-sections")
 
 IF (WIN32)
     set(CMAKE_CXX_STANDARD_LIBRARIES "-static-libgcc -static-libstdc++ -lwsock32 -lws2_32 ${CMAKE_CSS_STANDARD_LIBRARIES}")
