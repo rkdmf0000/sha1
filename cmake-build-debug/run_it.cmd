@@ -42,9 +42,11 @@ echo. 戌式式式式式式式式式式式式式式式式式式式式式式式式戎
 echo.
 
 :testform
+echo. [ Target text : %str% ]
 set /p str=Please put any text : 
 hash_enc1.exe %str%
 echo. [ Converted! ]
+echo.
 echo.
 goto :testform
 
