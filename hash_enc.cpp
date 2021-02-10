@@ -2,10 +2,7 @@
 // Created by my_fl on 2021-02-04.
 //
 
-
 #include "hash_enc.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 HASH_ENC_UINT32 hash_enc::MAXIMUM_MESSAGE_BLOCK_SIZE = __MAXIMUM_MESSAGE_BLOCK_SIZE;
 HASH_ENC_UINT32 hash_enc::MAXIMUM_HASH_SIZE = __MAXIMUM_HASH_SIZE;
@@ -93,22 +90,22 @@ void hash_enc::messageBlock(const HASH_ENC_UINT32 limited) {
         _box[loopIndex] = 0;
     HASH_ENC_FN_MEMCPY(_box, this->ctx.messageBlock, hash_enc::MAXIMUM_MESSAGE_BLOCK_SIZE);
     for (loopIndex = 0; loopIndex < 16; ++loopIndex)
-        _box[loopIndex & 0x0f] = _lrotl(_box[loopIndex + 13 & 0x0f]
+        _box[loopIndex & 0x0f] = HASH_ENC_FN_LROTL(_box[loopIndex + 13 & 0x0f]
                                         ^ _box[loopIndex + 8 & 0x0f]
                                         ^ _box[loopIndex + 2 & 0x0f]
                                         ^ _box[loopIndex & 0x0f], 1);
     for (loopIndex = 16; loopIndex < 32; ++loopIndex)
-        _box[loopIndex & 0x0f] = _lrotl(_box[loopIndex + 29 & 0x0f]
+        _box[loopIndex & 0x0f] = HASH_ENC_FN_LROTL(_box[loopIndex + 29 & 0x0f]
                                         ^ _box[loopIndex + 24 & 0x0f]
                                         ^ _box[loopIndex + 18 & 0x0f]
                                         ^ _box[loopIndex & 0x0f], 1);
     for (loopIndex = 32; loopIndex < 48; ++loopIndex)
-        _box[loopIndex & 0x0f] = _lrotl(_box[loopIndex + 45 & 0x0f]
+        _box[loopIndex & 0x0f] = HASH_ENC_FN_LROTL(_box[loopIndex + 45 & 0x0f]
                                         ^ _box[loopIndex + 40 & 0x0f]
                                         ^ _box[loopIndex + 34 & 0x0f]
                                         ^ _box[loopIndex & 0x0f], 1);
     for (loopIndex = 48; loopIndex < 64; ++loopIndex)
-        _box[loopIndex & 0x0f] = _lrotl(_box[loopIndex + 61 & 0x0f]
+        _box[loopIndex & 0x0f] = HASH_ENC_FN_LROTL(_box[loopIndex + 61 & 0x0f]
                                         ^ _box[loopIndex + 56 & 0x0f]
                                         ^ _box[loopIndex + 50 & 0x0f]
                                         ^ _box[loopIndex & 0x0f], 1);

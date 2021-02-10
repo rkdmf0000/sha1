@@ -2,7 +2,6 @@
 // Created by my_fl on 2021-02-04.
 //
 
-
 /**
  * hash_encryption_by_custom
  * */
@@ -27,33 +26,41 @@
 #endif
 
 #include <iostream>
+#include <cmath>
+#include <string>
 
-
-typedef std::string HASH_ENC_STD_STRING;
-typedef unsigned char HASH_ENC_UCHAR;
-typedef unsigned int HASH_ENC_UINT32;
-typedef unsigned long long HASH_ENC_UINT64;
-typedef HASH_ENC_UINT32 HASH_ENC_SIZE;
-typedef HASH_ENC_UCHAR HASH_ENC_MESSAGE_BLOCK;
-typedef HASH_ENC_UINT32 HASH_ENC_HASH_BLOCK;
 
 #define HASH_ENC_K1 0x5a827999
 #define HASH_ENC_K2 0x6ed9eba1
 #define HASH_ENC_K3 0x8f1bbcdc
 #define HASH_ENC_K4 0xca62c1d6
 
+#include "hash_enc_def.h"
+
 #ifndef HASH_ENC1_HASH_ENC_H_MACRO
 #define HASH_ENC1_HASH_ENC_H_MACRO
-
-
 #if HASH_ENC_OS == HASH_ENC_CONFIG_STR_LINUX
 #include <stdlib.h>
-#define HASH_ENC_FN_MEMCPY std::memcpy
+#include "hash_enc_linux_support.h"
+#define HASH_ENC_FN_MEMCPY hash_enc_linux_support::__hash_enc_memcpy
+#define HASH_ENC_FN_ROTL hash_enc_linux_support::__hash_enc_rotl
+#define HASH_ENC_FN_LROTL hash_enc_linux_support::__hash_enc_lrotl
+#define HASH_ENC_FN_ROTR hash_enc_linux_support::__hash_enc_rotr
+#define HASH_ENC_FN_LROTR hash_enc_linux_support::__hash_enc_lrotr
 #elif HASH_ENC_OS == HASH_ENC_CONFIG_STR_WINDOW
 #define HASH_ENC_FN_MEMCPY memcpy
+#define HASH_ENC_FN_ROTL _rotl
+#define HASH_ENC_FN_LROTL _lrotl
+#define HASH_ENC_FN_ROTR _rotr
+#define HASH_ENC_FN_LROTR _lrotr
 #else
 #define HASH_ENC_FN_MEMCPY memcpy
+#define HASH_ENC_FN_ROTL _rotl
+#define HASH_ENC_FN_LROTL _lrotl
+#define HASH_ENC_FN_ROTR _rotr
+#define HASH_ENC_FN_LROTR _lrotr
 #endif
+
 
 #define HASH_ENC_MATH_MIN(na, nb) (na < nb ? na : nb)
 #define HASH_ENC_MATH_MAX(na, nb) (na < nb ? nb: na)
@@ -72,6 +79,7 @@ typedef HASH_ENC_UINT32 HASH_ENC_HASH_BLOCK;
                                  B = HASH_ENC_ROL( B, 30 );    \
                                } while(0)
 #endif
+
 
 struct HASH_ENC_CTX {
     HASH_ENC_SIZE messageBlockBufferSize;
