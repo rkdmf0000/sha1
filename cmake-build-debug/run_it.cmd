@@ -8,6 +8,10 @@ echo suck :
 hash_enc1.exe suck
 echo.
 
+echo buck : 
+hash_enc1.exe buck
+echo.
+
 echo suck you : 
 hash_enc1.exe suck you
 echo.
@@ -16,8 +20,8 @@ echo 1234 :
 hash_enc1.exe 1234
 echo.
 
-echo NULL: 
-hash_enc1.exe
+echo xxxx: 
+hash_enc1.exe xxxx
 echo.
 
 pause
