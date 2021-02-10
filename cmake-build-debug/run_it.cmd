@@ -32,7 +32,6 @@ echo e5Ðê¸»c9ïñ·Î0ÞÈb½Å5ãùa4 :
 hash_enc1.exe e5Ðê¸»c9ïñ·Î0ÞÈb½Å5ãùa4
 echo.
 
-
 echo.
 echo.
 echo.
