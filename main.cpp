@@ -1,4 +1,5 @@
 #include "hash_enc.h"
+
 int main(int argc, char* argv[]) {
     hash_enc _instance;
     _instance.init();
