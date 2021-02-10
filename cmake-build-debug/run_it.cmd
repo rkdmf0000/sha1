@@ -30,8 +30,7 @@ setlocal
 set /p str=아무 문자열이나 입력하세요 :
 hash_enc1.exe %str%
 echo.
-pause
-cls
+pause > nul
 goto :testform
 
 pause
