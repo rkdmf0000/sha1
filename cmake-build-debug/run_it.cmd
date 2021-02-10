@@ -1,14 +1,14 @@
 @echo off
 
-echo hello : 
-hash_enc1.exe hello
+echo Thank you for use this encryption code :)  : 
+hash_enc1.exe Thank you for use this encryption code :)
 echo.
 
-echo suck : 
+echo hello : 
 hash_enc1.exe suck
 echo.
 
-echo buck : 
+echo world123 : 
 hash_enc1.exe buck
 echo.
 
@@ -20,17 +20,33 @@ echo 1234 :
 hash_enc1.exe 1234
 echo.
 
-echo xxxx: 
-hash_enc1.exe xxxx
+echo °¡³ª´Ù: 
+hash_enc1.exe °¡³ª´Ù
+echo.
+
+echo ïÙãæã®×ì: 
+hash_enc1.exe ïÙãæã®×ì
+echo.
+
+echo e5Ðê¸»c9ïñ·Î0ÞÈb½Å5ãùa4 : 
+hash_enc1.exe e5Ðê¸»c9ïñ·Î0ÞÈb½Å5ãùa4
+echo.
+
+
+echo.
+echo.
+echo.
+echo. ¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤
+echo.   SHA ENCRYPT TESTER TOOL
+echo. ¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥
 echo.
 
 :testform
 setlocal
-
-set /p str=ì•„ë¬´ ë¬¸ìžì—´ì´ë‚˜ ìž…ë ¥í•˜ì„¸ìš” :
+set /p str=Please put any text : 
 hash_enc1.exe %str%
+echo. [ Converted! ]
 echo.
-pause > nul
 goto :testform
 
 pause
