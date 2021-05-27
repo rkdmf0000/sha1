@@ -18,3 +18,5 @@
 
 > ### NOTICE
 > Default seed will be used if option '-s' is not used
+> 
+> Space not recognized during option entry
