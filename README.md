@@ -17,6 +17,6 @@
 ```
 
 > ### NOTICE
-> Default seed will be used if option '-s' is not used
+> 1. Default seed will be used if option '-s' is not used
 > 
-> Space not recognized during option entry
+> 2. Space not recognized during option entry
