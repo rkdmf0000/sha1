@@ -16,3 +16,5 @@
 `hash_enc1.exe` / `hash_enc1`  -s HELLO_SEED_VALUE 123 456 -v ANY STRING HERE
 ```
 
+> NOTICE
+> Default seed will be used if option '-s' is not used
