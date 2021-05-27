@@ -227,6 +227,9 @@ HASH_ENC_STD_STRING hash_enc::n2hexstr(I w, HASH_ENC_SIZE hex_len) {
 }
 
 void hash_enc::seed(const HASH_ENC_UINT32 *seeds) {
-
+    this->init();
+    unsigned int index(0);
+    for (index = 0; index < hash_enc::MAXIMUM_HASH_SIZE; ++index)
+        this->ctx.hash[index] = seeds[index];
 }
 
